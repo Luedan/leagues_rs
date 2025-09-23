@@ -1,3 +1,6 @@
+import '@mantine/core/styles.css'; //import Mantine V7 styles needed by MRT
+import '@mantine/dates/styles.css'; //if using mantine date picker features
+import 'mantine-react-table/styles.css'; //import MRT styles
 import {
   isRouteErrorResponse,
   Links,
@@ -10,6 +13,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { createTheme, MantineProvider } from "@mantine/core";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -41,11 +45,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
     </html>
   );
 }
+
+const theme = createTheme({
+  /** Put your mantine theme override here */
+});
+
 const queryClient = new QueryClient();
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <MantineProvider theme={theme}>
+        <Outlet />
+      </MantineProvider>
     </QueryClientProvider>
   );
 }
