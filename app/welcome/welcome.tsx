@@ -4,8 +4,9 @@ import {
   Image,
   LoadingOverlay,
   TextInput,
+  useMantineColorScheme,
 } from "@mantine/core";
-import { IconSearch } from "@tabler/icons-react";
+import { IconSearch, IconMoonFilled, IconSunFilled } from "@tabler/icons-react";
 import { useQuery } from "@tanstack/react-query";
 import { useMantineReactTable, type MRT_ColumnDef } from "mantine-react-table";
 import { useCallback, useMemo, useRef, useState } from "react";
@@ -13,10 +14,12 @@ import { getPlayers } from "~/services/rs";
 import type { Completed } from "~/types/responses";
 import { Profile } from "./Profile";
 import { TaskPanel } from "./TaskPanel";
+import { useColorScheme } from "@mantine/hooks";
 
 export function Welcome() {
   const [searchParams, setSearchParams] = useState("");
   const refInput = useRef<HTMLInputElement>(null);
+  const { colorScheme, setColorScheme } = useMantineColorScheme();
 
   const handleSearch = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
@@ -69,7 +72,6 @@ export function Welcome() {
 
   return (
     <AppShell
-      bg={"oklch(98.4% 0.003 247.858)"}
       header={{
         height: 75,
       }}
@@ -85,18 +87,32 @@ export function Welcome() {
             <Image src={"/logo.png"} w={56} />
             <Image src={"/Logo_nuevo2.png"} w={"230"} />
           </div>
-          <form
-            className="mr-3 flex items-center gap-2 rounded p-2"
-            onSubmit={handleSearch}
-          >
-            <TextInput placeholder="Your Rsn" ref={refInput} autoFocus={true} />
-            <ActionIcon variant="filled" aria-label="Settings" type="submit">
-              <IconSearch
-                style={{ width: "70%", height: "70%" }}
-                stroke={1.5}
+          <div className="flex items-center">
+            <form
+              className="flex items-center gap-2 rounded p-2"
+              onSubmit={handleSearch}
+            >
+              <TextInput
+                placeholder="Your Rsn"
+                ref={refInput}
+                autoFocus={true}
               />
+              <ActionIcon variant="filled" aria-label="Settings" type="submit">
+                <IconSearch
+                  style={{ width: "70%", height: "70%" }}
+                  stroke={1.5}
+                />
+              </ActionIcon>
+            </form>
+            <ActionIcon
+              className="mr-3"
+              onClick={() =>
+                setColorScheme(colorScheme === "dark" ? "light" : "dark")
+              }
+            >
+              {colorScheme !== "dark" ? <IconMoonFilled style={{ width: "70%", height: "70%" }} stroke={1.5} /> : <IconSunFilled style={{ width: "70%", height: "70%" }} stroke={1.5} />}
             </ActionIcon>
-          </form>
+          </div>
         </div>
       </AppShell.Header>
       <AppShell.Main className="flex items-center justify-center">

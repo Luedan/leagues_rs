@@ -74,8 +74,8 @@ export const Profile = ({ data }: { data: IResponseRS | undefined }) => {
               <Box className="flex gap-2 rounded border-1 border-slate-400 flex-col p-1 shadow-sm">
                 <Image
                   className="self-start"
-                  src={`https://runescape.wiki/images/thumb/${skill}-icon.png/21px-${skill}-icon.png?93d2b`}
-                  w={21}
+                  src={`https://runescape.wiki/images/thumb/${skill}-icon.png/26px-${skill}-icon.png?93d2b`}
+                  w={26}
                 />
                 <Text className="self-end" size="xs" fw={700}>
                   {skillData[skill as keyof typeof skillData]} /{" "}
@@ -93,7 +93,7 @@ export const Profile = ({ data }: { data: IResponseRS | undefined }) => {
             <Image
               className="self-start"
               src={"https://runescape.wiki/images/Skills_icon.png?51831"}
-              w={21}
+              w={26}
             />
             <Text className="self-end" size="xs" fw={700}>
               {totalLvl} / {realTotal}
