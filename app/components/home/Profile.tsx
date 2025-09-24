@@ -1,10 +1,10 @@
 import { Box, Divider, Grid, Image, Paper, Text, Title } from "@mantine/core";
+import { PieChart } from "@mantine/charts";
 import { useRuneScapeStore } from "~/store/RunescapeStore";
-import { type IResponseRS } from "~/types/responses";
 import { SkillMax, validateRange } from "~/utils";
 
 export const Profile = () => {
-  const { data } = useRuneScapeStore((state) => state);
+  const { data, completedByTier, incompleteByTier } = useRuneScapeStore((state) => state);
 
   const skillData = data?.levels || {};
   const skills = Object.keys(skillData || {}) || [];
