@@ -1,4 +1,4 @@
-import { Paper, Tabs } from "@mantine/core";
+import { Box, Divider, Paper, Tabs, Title } from "@mantine/core";
 import { MantineReactTable, type MRT_TableInstance } from "mantine-react-table";
 import type { Completed } from "~/types/responses";
 
@@ -11,7 +11,9 @@ export const TaskPanel = ({
 }) => {
   return (
     <Paper shadow="sm" w={"100%"} p="md" withBorder>
-      <Tabs defaultValue="incompleted" className="w-full p-2">
+      <Title order={3}>Task Lists</Title>
+      <Divider my="md" />
+      <Tabs defaultValue="incompleted">
         <Tabs.List>
           <Tabs.Tab value="incompleted">Incomplete</Tabs.Tab>
           <Tabs.Tab value="completed">Completed</Tabs.Tab>

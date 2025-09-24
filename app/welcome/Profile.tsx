@@ -62,7 +62,7 @@ export const Profile = ({ data }: { data: IResponseRS | undefined }) => {
           </Grid.Col>
         </Grid>
       </Paper>
-      <Paper shadow="sm" w={"100%"} p="md" withBorder>
+      <Paper shadow="sm"  p="md" withBorder>
         <Title order={3}>Skills</Title>
         <Divider my="md" />
         <Grid>

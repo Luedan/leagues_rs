@@ -18,7 +18,8 @@ export function Welcome() {
   const [searchParams, setSearchParams] = useState("");
   const refInput = useRef<HTMLInputElement>(null);
 
-  const handleSearch = useCallback(() => {
+  const handleSearch = useCallback((e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (refInput.current) {
       setSearchParams(refInput.current.value);
     }
@@ -81,23 +82,23 @@ export function Welcome() {
             <Image src={"/logo.png"} w={56} />
             <Image src={"/Logo_nuevo2.png"} w={"230"} />
           </div>
-          <div className="mr-3 flex items-center gap-2 rounded p-2">
+          <form className="mr-3 flex items-center gap-2 rounded p-2" onSubmit={handleSearch}>
             <TextInput placeholder="Your Rsn" ref={refInput} />
             <ActionIcon
               variant="filled"
               aria-label="Settings"
-              onClick={handleSearch}
+              type="submit"
             >
               <IconSearch
                 style={{ width: "70%", height: "70%" }}
                 stroke={1.5}
               />
             </ActionIcon>
-          </div>
+          </form>
         </div>
       </AppShell.Header>
-      <AppShell.Main>
-        <div className="flex w-full flex-col items-center gap-4 p-4">
+      <AppShell.Main className="flex items-center justify-center">
+        <div className="flex w-full flex-col items-center gap-4 p-4 container">
           <Profile data={data} />
 
           <TaskPanel

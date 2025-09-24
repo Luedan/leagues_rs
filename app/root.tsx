@@ -1,6 +1,6 @@
-import '@mantine/core/styles.css'; //import Mantine V7 styles needed by MRT
-import '@mantine/dates/styles.css'; //if using mantine date picker features
-import 'mantine-react-table/styles.css'; //import MRT styles
+import "@mantine/core/styles.css"; //import Mantine V7 styles needed by MRT
+import "@mantine/dates/styles.css"; //if using mantine date picker features
+import "mantine-react-table/styles.css"; //import MRT styles
 import {
   isRouteErrorResponse,
   Links,
@@ -48,6 +48,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 const theme = createTheme({
   /** Put your mantine theme override here */
+  fontFamily: "Cinzel, serif",
+  headings: { fontFamily: "Cinzel, serif" },
 });
 
 const queryClient = new QueryClient();
