@@ -19,7 +19,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/luedan-rsleages:latest .
+        run: docker build --build-arg VITE_API_USERNAME=${{ secrets.VITE_API_USERNAME }}  --build-arg VITE_API_PASSWORD=${{ secrets.VITE_API_PASSWORD }} -t ${{ secrets.DOCKERHUB_USERNAME }}/luedan-rsleages:latest .
 
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/luedan-rsleages:latest

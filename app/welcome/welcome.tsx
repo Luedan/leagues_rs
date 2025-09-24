@@ -18,12 +18,15 @@ export function Welcome() {
   const [searchParams, setSearchParams] = useState("");
   const refInput = useRef<HTMLInputElement>(null);
 
-  const handleSearch = useCallback((e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (refInput.current) {
-      setSearchParams(refInput.current.value);
-    }
-  }, [refInput]);
+  const handleSearch = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      if (refInput.current) {
+        setSearchParams(refInput.current.value);
+      }
+    },
+    [refInput]
+  );
 
   const { data, isLoading } = useQuery({
     queryFn: () => getPlayers(searchParams),
@@ -82,13 +85,12 @@ export function Welcome() {
             <Image src={"/logo.png"} w={56} />
             <Image src={"/Logo_nuevo2.png"} w={"230"} />
           </div>
-          <form className="mr-3 flex items-center gap-2 rounded p-2" onSubmit={handleSearch}>
-            <TextInput placeholder="Your Rsn" ref={refInput} />
-            <ActionIcon
-              variant="filled"
-              aria-label="Settings"
-              type="submit"
-            >
+          <form
+            className="mr-3 flex items-center gap-2 rounded p-2"
+            onSubmit={handleSearch}
+          >
+            <TextInput placeholder="Your Rsn" ref={refInput} autoFocus={true} />
+            <ActionIcon variant="filled" aria-label="Settings" type="submit">
               <IconSearch
                 style={{ width: "70%", height: "70%" }}
                 stroke={1.5}
