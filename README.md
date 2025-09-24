@@ -1,87 +1,81 @@
-# Welcome to React Router!
+# 🎮 RuneScape Leagues Lookup
 
-A modern, production-ready template for building full-stack React applications using React Router.
+Un **fan website** no oficial dedicado a los jugadores de RuneScape 3 que participan en las temporadas de Leagues. Consulta tu progreso, estadísticas de habilidades y el estado de completación de las League tasks.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+![RuneScape Leagues](./public/logo.png)
 
-## Features
+## ⚡ Características
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- 📊 **Visualización completa de estadísticas de habilidades**
+- ✅ **Seguimiento de tareas completadas e incompletas** 
+- 🏆 **Sistema de trofeos basado en puntos obtenidos**
+- 📍 **Organización por regiones y localidades**
+- 📱 **Diseño responsive y moderno**
 
-## Getting Started
+## 🛠️ Tecnologías Utilizadas
 
-### Installation
+- **React Router 7** - Routing y navegación
+- **TypeScript** - Tipado estático
+- **Mantine UI** - Componentes de interfaz
+- **TailwindCSS** - Estilos y utilidades
+- **Zustand** - Manejo de estado global
+- **React Query** - Fetching y caching de datos
 
-Install the dependencies:
+## 🚀 Instalación y Uso
 
 ```bash
+# Clonar el repositorio
+git clone https://github.com/Luedan/leagues_rs.git
+
+# Navegar al directorio
+cd leagues_rs
+
+# Instalar dependencias
 npm install
-```
 
-### Development
-
-Start the development server with HMR:
-
-```bash
+# Iniciar en modo desarrollo
 npm run dev
-```
 
-Your application will be available at `http://localhost:5173`.
-
-## Building for Production
-
-Create a production build:
-
-```bash
+# Construir para producción
 npm run build
 ```
 
-## Deployment
+## 📱 Capturas de Pantalla
 
-### Docker Deployment
+*Próximamente...*
 
-To build and run using Docker:
+## 🤝 Contribuciones
 
-```bash
-docker build -t my-app .
+¡Las contribuciones son bienvenidas! Para contribuir:
 
-# Run the container
-docker run -p 3000:3000 my-app
-```
+1. Haz fork del proyecto
+2. Crea una rama feature (`git checkout -b feature/nueva-caracteristica`)
+3. Commit tus cambios (`git commit -m 'Agregar nueva característica'`)
+4. Push a la rama (`git push origin feature/nueva-caracteristica`)
+5. Abre un Pull Request
 
-The containerized application can be deployed to any platform that supports Docker, including:
+## 📄 Licencia
 
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
+Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
 
-### DIY Deployment
+## ⚠️ Descargo de Responsabilidad
 
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
+Este es un proyecto de fans independiente y **no está afiliado, respaldado o patrocinado por Jagex Ltd**. RuneScape es una marca registrada de Jagex Ltd.
 
-Make sure to deploy the output of `npm run build`
+## 👨‍💻 Desarrollador
 
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
+**Luedandev** - Desarrollado con ❤️ por un apasionado del RuneScape
 
-## Styling
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/luedandev/)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Luedan)
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+## 📞 Contacto
+
+- **GitHub Issues**: Para reportar bugs o solicitar features
+- **LinkedIn**: Para contacto profesional
+- **Repository**: [leagues_rs](https://github.com/Luedan/leagues_rs)
 
 ---
 
-Built with ❤️ using React Router.
+*¡Que disfrutes explorando tus estadísticas de Leagues! 🎯*
+

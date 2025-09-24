@@ -1,8 +1,11 @@
 import { Box, Divider, Grid, Image, Paper, Text, Title } from "@mantine/core";
+import { useRuneScapeStore } from "~/store/RunescapeStore";
 import { type IResponseRS } from "~/types/responses";
 import { SkillMax, validateRange } from "~/utils";
 
-export const Profile = ({ data }: { data: IResponseRS | undefined }) => {
+export const Profile = () => {
+  const { data } = useRuneScapeStore((state) => state);
+
   const skillData = data?.levels || {};
   const skills = Object.keys(skillData || {}) || [];
   const totalLvl = Object.values(skillData || {})?.reduce((a, b) => a + b, 0);
@@ -62,7 +65,7 @@ export const Profile = ({ data }: { data: IResponseRS | undefined }) => {
           </Grid.Col>
         </Grid>
       </Paper>
-      <Paper shadow="sm"  p="md" withBorder>
+      <Paper shadow="sm" p="md" withBorder>
         <Title order={3}>Skills</Title>
         <Divider my="md" />
         <Grid>

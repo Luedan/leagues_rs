@@ -1,0 +1,106 @@
+import {
+  ActionIcon,
+  Anchor,
+  AppShell,
+  Image,
+  LoadingOverlay,
+  TextInput,
+  useMantineColorScheme,
+} from "@mantine/core";
+import {
+  IconMoonFilled,
+  IconSearch,
+  IconSunFilled
+} from "@tabler/icons-react";
+import { NavLink, Outlet, useLocation, useNavigation } from "react-router";
+import { useRs } from "~/hooks/useRs";
+
+export default function Layout() {
+  const { ref, handleSearch, isLoading } = useRs();
+  const navigation = useNavigation();
+  const isNavigating = Boolean(navigation.location);
+
+  const location = useLocation();
+
+  const { colorScheme, setColorScheme } = useMantineColorScheme();
+
+  return (
+    <AppShell
+      header={{
+        height: 75,
+      }}
+    >
+      <LoadingOverlay
+        visible={isLoading || isNavigating}
+        zIndex={1000}
+        overlayProps={{ radius: "sm", blur: 3 }}
+      />
+      <AppShell.Header className="p-2" bg={"oklch(20.8% 0.042 265.755)"}>
+        <div className="flex w-full items-center justify-between">
+          {/* Logo */}
+          <div className="flex gap-4 flex-1">
+            <Image src={"/logo.png"} w={56} />
+            <Image src={"/Logo_nuevo2.png"} w={"230"} />
+          </div>
+          {/* menu: Home and About */}
+          <div className="flex flex-1 justify-center items-center">
+            <div className="mr-2">
+              <NavLink to="/">
+                <Anchor fw={location?.pathname === "/" ? "bold" : "normal"}>
+                  Home
+                </Anchor>
+              </NavLink>
+            </div>
+            <div>
+              <NavLink to="/about">
+                <Anchor
+                  fw={location?.pathname === "/about" ? "bold" : "normal"}
+                >
+                  About
+                </Anchor>
+              </NavLink>
+            </div>
+          </div>
+          {/* Search Bar */}
+          <div className="flex items-center flex-1 justify-end">
+            <form
+              className="flex items-center gap-2 rounded p-2"
+              onSubmit={handleSearch}
+            >
+              <TextInput placeholder="Your Rsn" ref={ref} autoFocus={true} />
+              <ActionIcon variant="filled" aria-label="Settings" type="submit">
+                <IconSearch
+                  style={{ width: "70%", height: "70%" }}
+                  stroke={1.5}
+                />
+              </ActionIcon>
+            </form>
+            <ActionIcon
+              className="mr-3"
+              onClick={() =>
+                setColorScheme(colorScheme === "dark" ? "light" : "dark")
+              }
+            >
+              {colorScheme !== "dark" ? (
+                <IconMoonFilled
+                  style={{ width: "70%", height: "70%" }}
+                  stroke={1.5}
+                />
+              ) : (
+                <IconSunFilled
+                  style={{ width: "70%", height: "70%" }}
+                  stroke={1.5}
+                />
+              )}
+            </ActionIcon>
+          </div>
+        </div>
+      </AppShell.Header>
+      <AppShell.Main className="flex items-center justify-center">
+        <div className="flex w-full flex-col items-center gap-4 p-4 container">
+          <Outlet />
+        </div>
+      </AppShell.Main>
+    </AppShell>
+  );
+}
