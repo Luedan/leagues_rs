@@ -7,11 +7,7 @@ import {
   TextInput,
   useMantineColorScheme,
 } from "@mantine/core";
-import {
-  IconMoonFilled,
-  IconSearch,
-  IconSunFilled
-} from "@tabler/icons-react";
+import { IconMoonFilled, IconSearch, IconSunFilled } from "@tabler/icons-react";
 import { NavLink, Outlet, useLocation, useNavigation } from "react-router";
 import { useRs } from "~/hooks/useRs";
 
@@ -38,12 +34,14 @@ export default function Layout() {
       <AppShell.Header className="p-2" bg={"oklch(20.8% 0.042 265.755)"}>
         <div className="flex w-full items-center justify-between">
           {/* Logo */}
-          <div className="flex gap-4 flex-1">
+          <div className="flex gap-4 md:flex-[.33]">
             <Image src={"/logo.png"} w={56} />
-            <Image src={"/Logo_nuevo2.png"} w={"230"} />
+            <div className="hidden md:block">
+              <Image src={"/Logo_nuevo2.png"} w={"230"} />
+            </div>
           </div>
           {/* menu: Home and About */}
-          <div className="flex flex-1 justify-center items-center">
+          <div className="flex md:flex-[.33] md:justify-center items-center">
             <div className="mr-2">
               <NavLink to="/">
                 <Anchor fw={location?.pathname === "/" ? "bold" : "normal"}>
@@ -62,7 +60,7 @@ export default function Layout() {
             </div>
           </div>
           {/* Search Bar */}
-          <div className="flex items-center flex-1 justify-end">
+          <div className="flex items-center md:flex-[.33] justify-end">
             <form
               className="flex items-center gap-2 rounded p-2"
               onSubmit={handleSearch}
