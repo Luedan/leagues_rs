@@ -1,9 +1,9 @@
-import { Box, Divider, Paper, Tabs, Title } from "@mantine/core";
+import { Divider, Image, Paper, Tabs, Title } from "@mantine/core";
 import {
   MantineReactTable,
   useMantineReactTable,
+  type MRT_Cell,
   type MRT_ColumnDef,
-  type MRT_TableInstance,
 } from "mantine-react-table";
 import { useMemo } from "react";
 import { useRuneScapeStore } from "~/store/RunescapeStore";
@@ -20,6 +20,22 @@ export const TaskPanel = () => {
       { accessorKey: "information", header: "Information" },
       { accessorKey: "requirements", header: "Requirements" },
       { accessorKey: "points", header: "Points" },
+      {
+        accessorKey: "taskTier",
+        header: "Tier",
+        Cell: ({ cell }: { cell: MRT_Cell<Completed> }) => {
+          const tier = cell.getValue<string>();
+          return (
+            <div className="flex items-center gap-1">
+              {tier}
+              <Image
+                src={`https://runescape.wiki/images/thumb/Catalyst_League_tasks_-_${tier}.png/15px-Catalyst_League_tasks_-_${tier}.png?3bb1b`}
+                w={15}
+              />
+            </div>
+          );
+        },
+      },
       { accessorKey: "completion", header: "Completion" },
     ],
     []

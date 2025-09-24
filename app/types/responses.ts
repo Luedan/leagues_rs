@@ -13,6 +13,7 @@ export interface Completed {
   information: null | string;
   requirements: string;
   points: string;
+  taskTier: string;
   completion: string;
 }
 

@@ -30,7 +30,7 @@ export default function Layout() {
         visible={isLoading || isNavigating}
         zIndex={1000}
         overlayProps={{ radius: "sm", blur: 3 }}
-      />
+      >asd</LoadingOverlay>
       <AppShell.Header className="p-2" bg={"oklch(20.8% 0.042 265.755)"}>
         <div className="flex w-full items-center justify-between">
           {/* Logo */}
