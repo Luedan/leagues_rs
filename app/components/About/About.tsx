@@ -38,6 +38,7 @@ export const AboutComponent = () => {
               <li>🏆 Trophy system based on points earned</li>
               <li>📍 Organization by regions and locations</li>
               <li>📱 Responsive and modern design</li>
+              <li>📊 Graphs for completed and incomplete tasks</li>
             </ul>
           </div>
 
@@ -67,6 +68,7 @@ export const AboutComponent = () => {
         </Title>
 
         <Text mb="lg">Developed with ❤️ by a passionate RuneScape fan</Text>
+        <Text mb="lg">Dedicated to the RS3 community and specially for the RS MANCOS group</Text>
 
         <Group gap="md">
           <Anchor

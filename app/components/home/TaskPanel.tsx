@@ -49,6 +49,7 @@ export const TaskPanel = () => {
     },
     initialState: { density: "md" },
     mantineTableContainerProps: { mah: "50dvh" },
+    enableStickyHeader: true,
   });
 
   const completedTable = useMantineReactTable({
@@ -59,6 +60,7 @@ export const TaskPanel = () => {
     },
     initialState: { density: "md" },
     mantineTableContainerProps: { mah: "50dvh" },
+    enableStickyHeader: true,
   });
 
   return (

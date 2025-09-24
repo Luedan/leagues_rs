@@ -11,6 +11,7 @@ An **unofficial fan website** dedicated to RuneScape 3 players participating in 
 - 🏆 **Trophy system based on points earned**
 - 📍 **Organization by regions and locations**
 - 📱 **Modern, responsive design**
+- 📊 **Graphs for completed and incomplete tasks**
 
 ## 🛠️ Technologies Used
 
