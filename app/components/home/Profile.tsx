@@ -24,7 +24,7 @@ export const Profile = () => {
   const trophy = validateRange(totalPoints);
   return (
     /* contenedor padre */
-    <Box className="flex flex-col gap-4">
+    <Box className="flex flex-col gap-4 w-full">
       <Paper shadow="sm" w={"100%"} p="md" withBorder>
         <Title order={3}>Profile</Title>
         <Divider my="md" />
