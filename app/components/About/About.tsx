@@ -8,7 +8,7 @@ import {
 export const AboutComponent = () => {
   return (
     <Box className="flex flex-col gap-6 max-w-4xl mx-auto p-4">
-      <Paper shadow="sm" p="xl" withBorder  bg={"oklch(20.8% 0.042 265.755)"}>
+      <Paper shadow="sm" p="xl" withBorder bg={"oklch(20.8% 0.042 265.755)"}>
         <Group mb="md" align="center" gap="sm">
           <Image src="/logo.png" w={48} />
           <Title order={1} c="#f4e2b0">
@@ -21,59 +21,52 @@ export const AboutComponent = () => {
         <div className="space-y-6 text-white">
           <div>
             <Title order={3} mb="md">
-              🎮 Acerca de este proyecto
+              🎮 About this project
             </Title>
             <Text size="lg" className="leading-relaxed">
-              Este es un <strong>fan website</strong> no oficial dedicado a los
-              jugadores de RuneScape 3 que participan en las temporadas de
-              Leagues. Aquí puedes consultar tu progreso, estadísticas de
-              habilidades y el estado de completación de las League tasks.
+              This is an <strong>unofficial fan website</strong> dedicated to RuneScape 3 players participating in Leagues seasons. Here you can check your progress, skill statistics, and the completion status of League tasks.
             </Text>
           </div>
 
           <div>
             <Title order={3} mb="md">
-              ⚡ Características
+              ⚡ Features
             </Title>
             <ul className="space-y-2">
-              <li>📊 Visualización completa de estadísticas de habilidades</li>
-              <li>✅ Seguimiento de tareas completadas e incompletas</li>
-              <li>🏆 Sistema de trofeos basado en puntos obtenidos</li>
-              <li>📍 Organización por regiones y localidades</li>
-              <li>📱 Diseño responsive y moderno</li>
+              <li>📊 Full visualization of skill statistics</li>
+              <li>✅ Tracking of completed and incomplete tasks</li>
+              <li>🏆 Trophy system based on points earned</li>
+              <li>📍 Organization by regions and locations</li>
+              <li>📱 Responsive and modern design</li>
             </ul>
           </div>
 
           <div>
             <Title order={3} mb="md">
-              🛠️ Tecnologías utilizadas
+              🛠️ Technologies used
             </Title>
             <Text className="text-gray-600">
-              Construido con React Router 7, TypeScript, Mantine UI,
-              TailwindCSS, Zustand para manejo de estado y React Query para
-              fetching de datos.
+              Built with React Router 7, TypeScript, Mantine UI, TailwindCSS, Zustand for state management, and React Query for data fetching.
             </Text>
           </div>
 
           <div>
             <Title order={3} mb="md">
-              ⚠️ Descargo de responsabilidad
+              ⚠️ Disclaimer
             </Title>
             <Text size="sm" className="italic">
-              Este es un proyecto de fans independiente y no está afiliado,
-              respaldado o patrocinado por Jagex Ltd. RuneScape es una marca
-              registrada de Jagex Ltd.
+              This is an independent fan project and is not affiliated with, endorsed, or sponsored by Jagex Ltd. RuneScape is a registered trademark of Jagex Ltd.
             </Text>
           </div>
         </div>
       </Paper>
 
-      <Paper shadow="sm" p="xl" withBorder   bg={"oklch(20.8% 0.042 265.755)"} className="text-white">
+      <Paper shadow="sm" p="xl" withBorder bg={"oklch(20.8% 0.042 265.755)"} className="text-white">
         <Title order={3} mb="md">
           👨‍💻 Luedandev
         </Title>
 
-        <Text mb="lg">Desarrollado con ❤️ por un apasionado del RuneScape</Text>
+        <Text mb="lg">Developed with ❤️ by a passionate RuneScape fan</Text>
 
         <Group gap="md">
           <Anchor

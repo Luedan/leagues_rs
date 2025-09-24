@@ -1,81 +1,80 @@
 # 🎮 RuneScape Leagues Lookup
 
-Un **fan website** no oficial dedicado a los jugadores de RuneScape 3 que participan en las temporadas de Leagues. Consulta tu progreso, estadísticas de habilidades y el estado de completación de las League tasks.
+An **unofficial fan website** dedicated to RuneScape 3 players participating in Leagues seasons. Check your progress, skill stats, and League task completion status.
 
 ![RuneScape Leagues](./public/logo.png)
 
-## ⚡ Características
+## ⚡ Features
 
-- 📊 **Visualización completa de estadísticas de habilidades**
-- ✅ **Seguimiento de tareas completadas e incompletas** 
-- 🏆 **Sistema de trofeos basado en puntos obtenidos**
-- 📍 **Organización por regiones y localidades**
-- 📱 **Diseño responsive y moderno**
+- 📊 **Comprehensive skill stats visualization**
+- ✅ **Tracking of completed and incomplete tasks**
+- 🏆 **Trophy system based on points earned**
+- 📍 **Organization by regions and locations**
+- 📱 **Modern, responsive design**
 
-## 🛠️ Tecnologías Utilizadas
+## 🛠️ Technologies Used
 
-- **React Router 7** - Routing y navegación
-- **TypeScript** - Tipado estático
-- **Mantine UI** - Componentes de interfaz
-- **TailwindCSS** - Estilos y utilidades
-- **Zustand** - Manejo de estado global
-- **React Query** - Fetching y caching de datos
+- **React Router 7** - Routing and navigation
+- **TypeScript** - Static typing
+- **Mantine UI** - Interface components
+- **TailwindCSS** - Styling and utilities
+- **Zustand** - Global state management
+- **React Query** - Data fetching and caching
 
-## 🚀 Instalación y Uso
+## 🚀 Installation & Usage
 
 ```bash
-# Clonar el repositorio
+# Clone the repository
 git clone https://github.com/Luedan/leagues_rs.git
 
-# Navegar al directorio
+# Navigate to the directory
 cd leagues_rs
 
-# Instalar dependencias
+# Install dependencies
 npm install
 
-# Iniciar en modo desarrollo
+# Start in development mode
 npm run dev
 
-# Construir para producción
+# Build for production
 npm run build
 ```
 
-## 📱 Capturas de Pantalla
+## 📱 Screenshots
 
-*Próximamente...*
+*Coming soon...*
 
-## 🤝 Contribuciones
+## 🤝 Contributions
 
-¡Las contribuciones son bienvenidas! Para contribuir:
+Contributions are welcome! To contribute:
 
-1. Haz fork del proyecto
-2. Crea una rama feature (`git checkout -b feature/nueva-caracteristica`)
-3. Commit tus cambios (`git commit -m 'Agregar nueva característica'`)
-4. Push a la rama (`git push origin feature/nueva-caracteristica`)
-5. Abre un Pull Request
+1. Fork the project
+2. Create a feature branch (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -m 'Add new feature'`)
+4. Push to the branch (`git push origin feature/new-feature`)
+5. Open a Pull Request
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
+This project is under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-## ⚠️ Descargo de Responsabilidad
+## ⚠️ Disclaimer
 
-Este es un proyecto de fans independiente y **no está afiliado, respaldado o patrocinado por Jagex Ltd**. RuneScape es una marca registrada de Jagex Ltd.
+This is an independent fan project and **is not affiliated with, endorsed, or sponsored by Jagex Ltd**. RuneScape is a registered trademark of Jagex Ltd.
 
-## 👨‍💻 Desarrollador
+## 👨‍💻 Developer
 
-**Luedandev** - Desarrollado con ❤️ por un apasionado del RuneScape
+**Luedandev** - Developed with ❤️ by a passionate RuneScape fan
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/luedandev/)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Luedan)
 
-## 📞 Contacto
+## 📞 Contact
 
-- **GitHub Issues**: Para reportar bugs o solicitar features
-- **LinkedIn**: Para contacto profesional
+- **GitHub Issues**: To report bugs or request features
+- **LinkedIn**: For professional contact
 - **Repository**: [leagues_rs](https://github.com/Luedan/leagues_rs)
 
 ---
 
-*¡Que disfrutes explorando tus estadísticas de Leagues! 🎯*
-
+*Enjoy exploring your Leagues stats! 🎯*
