@@ -84,7 +84,6 @@ export const useRs = () => {
       setIncompleteByTier(incompleteByTier);
       setCompletedByTier(completedByTier);
 
-      // console.log(incompleteByTier, completedByTier);
       setData(data);
     }
   }, [data, isLoading, setData]);
