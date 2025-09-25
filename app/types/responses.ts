@@ -4,6 +4,8 @@ export interface IResponseRS {
   levels: { [key: string]: number };
   incompleted: Completed[];
   completed: Completed[];
+  error?: boolean | null;
+  message?: string | null;
 }
 
 export interface Completed {

@@ -3,11 +3,17 @@ import {
   Anchor,
   AppShell,
   Image,
-  LoadingOverlay,
   TextInput,
   useMantineColorScheme,
 } from "@mantine/core";
-import { IconMoonFilled, IconSearch, IconSunFilled } from "@tabler/icons-react";
+import {
+  IconMoonFilled,
+  IconSearch,
+  IconSunFilled,
+  IconUser,
+} from "@tabler/icons-react";
+import { Notifications } from "@mantine/notifications";
+import { FloatButton } from "components/FloatButton";
 import { NavLink, Outlet, useLocation, useNavigation } from "react-router";
 import { useRs } from "~/hooks/useRs";
 import { Loading } from "./Loading";
@@ -27,6 +33,7 @@ export default function Layout() {
         height: 75,
       }}
     >
+      <Notifications  position="top-right" />
       <Loading isLoading={isLoading || isNavigating} />
       <AppShell.Header className="p-2" bg={"oklch(20.8% 0.042 265.755)"}>
         <div className="flex w-full items-center justify-between">
@@ -95,6 +102,9 @@ export default function Layout() {
         <div className="flex w-full flex-col items-center gap-4 p-4 container">
           <Outlet />
         </div>
+        <FloatButton size={"xl"}>
+          <IconUser stroke={2} className="animate-pulse" />
+        </FloatButton>
       </AppShell.Main>
     </AppShell>
   );

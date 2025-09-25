@@ -1,3 +1,4 @@
+import { notifications } from "@mantine/notifications";
 import { useQuery } from "@tanstack/react-query";
 import React, { useCallback, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router";
@@ -40,7 +41,8 @@ export const useRs = () => {
 
   useEffect(() => {
     setIsLoading(isLoading);
-    if (data) {
+
+    if (data && !data?.error && !isLoading) {
       const completedByTier = data?.completed
         ?.reduce(
           (acc, task) => {
@@ -85,6 +87,18 @@ export const useRs = () => {
       setCompletedByTier(completedByTier);
 
       setData(data);
+
+      notifications.show({
+        autoClose: 4000,
+        message: "Data Loaded",
+      });
+    }
+
+    if (data?.error && !isLoading) {
+      notifications.show({
+        autoClose: 4000,
+        message: data?.message || "An error has occurred, please try again.",
+      });
     }
   }, [data, isLoading, setData]);
 
