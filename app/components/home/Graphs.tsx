@@ -2,6 +2,7 @@ import { PieChart } from "@mantine/charts";
 import { Divider, Paper, Text, Title } from "@mantine/core";
 import React from "react";
 import { useRuneScapeStore } from "~/store/RunescapeStore";
+import { TASK_DATA } from "~/utils/constants";
 
 export const Graphs = () => {
   const { completedByTier, incompleteByTier } = useRuneScapeStore(
@@ -17,7 +18,7 @@ export const Graphs = () => {
             Data based on completed tasks by tier
           </Text>
           <PieChart
-            data={completedByTier}
+            data={completedByTier?.length ? completedByTier : TASK_DATA}
             withLabels
             labelsType="percent"
             withTooltip
@@ -31,7 +32,7 @@ export const Graphs = () => {
             Data based on incomplete tasks by tier
           </Text>
           <PieChart
-            data={incompleteByTier}
+            data={incompleteByTier?.length ? incompleteByTier : TASK_DATA}
             withLabels
             labelsType="percent"
             withTooltip

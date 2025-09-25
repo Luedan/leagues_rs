@@ -10,6 +10,7 @@ import {
 import { IconMoonFilled, IconSearch, IconSunFilled } from "@tabler/icons-react";
 import { NavLink, Outlet, useLocation, useNavigation } from "react-router";
 import { useRs } from "~/hooks/useRs";
+import { Loading } from "./Loading";
 
 export default function Layout() {
   const { ref, handleSearch, isLoading } = useRs();
@@ -26,11 +27,7 @@ export default function Layout() {
         height: 75,
       }}
     >
-      <LoadingOverlay
-        visible={isLoading || isNavigating}
-        zIndex={1000}
-        overlayProps={{ radius: "sm", blur: 3 }}
-      >asd</LoadingOverlay>
+      <Loading isLoading={isLoading || isNavigating} />
       <AppShell.Header className="p-2" bg={"oklch(20.8% 0.042 265.755)"}>
         <div className="flex w-full items-center justify-between">
           {/* Logo */}
