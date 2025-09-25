@@ -1,42 +1,48 @@
 import { notifications } from "@mantine/notifications";
 import { useQuery } from "@tanstack/react-query";
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { getPlayers } from "~/services/rs";
-import { useRuneScapeStore } from "~/store/RunescapeStore";
-import { TASK_DATA } from "~/utils/constants";
+import {
+  useRuneScapePersistStore,
+  useRuneScapeStore,
+} from "~/store/RunescapeStore";
 
 export const useRs = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const {
-    rsName,
-    setRsName,
     setData,
     setIsLoading,
     setCompletedByTier,
     setIncompleteByTier,
+    setRefetch,
+    setSearch,
+    search,
   } = useRuneScapeStore((state) => state);
+  const { rsName } = useRuneScapePersistStore((state) => state);
+  const [value, setValue] = useState(rsName || "");
 
-  const ref = useRef<HTMLInputElement>(null);
-
-  const handleSearch = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      if (ref.current) {
-        if (location.pathname !== "/") {
-          navigate("/");
-        }
-        setRsName(ref.current.value);
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (value && value.trim().length > 0) {
+      setSearch(true);
+      if (location.pathname !== "/") {
+        navigate("/");
       }
-    },
-    [ref]
-  );
+    }
+  };
 
-  const { data, isLoading } = useQuery({
-    queryFn: () => getPlayers(rsName),
-    queryKey: ["Player_League", rsName],
-    enabled: !!rsName,
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value;
+    setValue(value);
+  };
+
+  const { data, isLoading, refetch, isRefetching } = useQuery({
+    queryFn: () => getPlayers(value),
+    queryKey: ["Player_League", value],
+    enabled: !!search && value.trim().length > 0,
+    refetchOnWindowFocus: false,
   });
 
   useEffect(() => {
@@ -87,6 +93,7 @@ export const useRs = () => {
       setCompletedByTier(completedByTier);
 
       setData(data);
+      setRefetch(refetch);
 
       notifications.show({
         autoClose: 4000,
@@ -100,11 +107,27 @@ export const useRs = () => {
         message: data?.message || "An error has occurred, please try again.",
       });
     }
+    setSearch(false);
   }, [data, isLoading, setData]);
 
+  useEffect(() => {
+    if (value && value.trim().length > 0 && !search) {
+      setSearch(true);
+      if (location.pathname !== "/") {
+        navigate("/");
+      }
+    }
+  }, []);
+
+  // useEffect(() => {
+  //   setSearch(true);
+  //   setValue(rsName || "");
+  // }, [rsName]);
+
   return {
-    ref,
     handleSearch,
-    isLoading,
+    isLoading: isLoading || isRefetching,
+    value,
+    handleChange,
   };
 };

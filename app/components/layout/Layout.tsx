@@ -6,20 +6,17 @@ import {
   TextInput,
   useMantineColorScheme,
 } from "@mantine/core";
-import {
-  IconMoonFilled,
-  IconSearch,
-  IconSunFilled,
-  IconUser,
-} from "@tabler/icons-react";
 import { Notifications } from "@mantine/notifications";
-import { FloatButton } from "components/FloatButton";
+import { IconMoonFilled, IconSearch, IconSunFilled } from "@tabler/icons-react";
 import { NavLink, Outlet, useLocation, useNavigation } from "react-router";
 import { useRs } from "~/hooks/useRs";
+import { ModalConfig } from "../modalConfig/ModalConfig";
 import { Loading } from "./Loading";
 
 export default function Layout() {
-  const { ref, handleSearch, isLoading } = useRs();
+  const { handleSearch, isLoading, value, handleChange } = useRs();
+
+
   const navigation = useNavigation();
   const isNavigating = Boolean(navigation.location);
 
@@ -33,7 +30,7 @@ export default function Layout() {
         height: 75,
       }}
     >
-      <Notifications  position="top-right" />
+      <Notifications position="top-right" />
       <Loading isLoading={isLoading || isNavigating} />
       <AppShell.Header className="p-2" bg={"oklch(20.8% 0.042 265.755)"}>
         <div className="flex w-full items-center justify-between">
@@ -69,8 +66,13 @@ export default function Layout() {
               className="flex items-center gap-2 rounded p-2"
               onSubmit={handleSearch}
             >
-              <TextInput placeholder="Your Rsn" ref={ref} autoFocus={true} />
-              <ActionIcon variant="filled" aria-label="Settings" type="submit">
+              <TextInput
+                placeholder="Your Rsn"
+                value={value || ""}
+                onChange={handleChange}
+                autoFocus={true}
+              />
+              <ActionIcon variant="light" aria-label="Settings" type="submit">
                 <IconSearch
                   style={{ width: "70%", height: "70%" }}
                   stroke={1.5}
@@ -79,6 +81,7 @@ export default function Layout() {
             </form>
             <ActionIcon
               className="mr-3"
+              variant="light"
               onClick={() =>
                 setColorScheme(colorScheme === "dark" ? "light" : "dark")
               }
@@ -102,9 +105,7 @@ export default function Layout() {
         <div className="flex w-full flex-col items-center gap-4 p-4 container">
           <Outlet />
         </div>
-        <FloatButton size={"xl"}>
-          <IconUser stroke={2} className="animate-pulse" />
-        </FloatButton>
+        <ModalConfig />
       </AppShell.Main>
     </AppShell>
   );

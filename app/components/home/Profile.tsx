@@ -1,10 +1,20 @@
-import { Box, Divider, Grid, Image, Paper, Text, Title } from "@mantine/core";
-import { PieChart } from "@mantine/charts";
+import {
+  ActionIcon,
+  Box,
+  Divider,
+  Grid,
+  Image,
+  Paper,
+  Text,
+  Title,
+  Tooltip,
+} from "@mantine/core";
+import { IconReload } from "@tabler/icons-react";
 import { useRuneScapeStore } from "~/store/RunescapeStore";
 import { SkillMax, validateRange } from "~/utils";
 
 export const Profile = () => {
-  const { data, completedByTier, incompleteByTier } = useRuneScapeStore((state) => state);
+  const { data, refetch } = useRuneScapeStore((state) => state);
 
   const skillData = data?.levels || {};
   const skills = Object.keys(skillData || {}) || [];
@@ -26,7 +36,21 @@ export const Profile = () => {
     /* contenedor padre */
     <Box className="flex flex-col gap-4 w-full">
       <Paper shadow="sm" w={"100%"} p="md" withBorder>
-        <Title order={3}>Profile</Title>
+        <div className="flex items-center justify-between">
+          <Title order={3}>Profile</Title>
+          {data?.username && !!refetch ? (
+            <Tooltip
+              label="Reload data"
+              openDelay={500}
+              closeDelay={100}
+              transitionProps={{ transition: "rotate-left", duration: 300 }}
+            >
+              <ActionIcon variant="light" onClick={() => refetch()}>
+                <IconReload stroke={2} />
+              </ActionIcon>
+            </Tooltip>
+          ) : null}
+        </div>
         <Divider my="md" />
         <Grid>
           <Grid.Col span={{ base: 12, md: 6, sm: 6, lg: 4, xs: 6 }}>

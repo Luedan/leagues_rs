@@ -1,6 +1,34 @@
+import type {
+  QueryObserverResult,
+  RefetchOptions,
+} from "@tanstack/react-query";
 import { create } from "zustand";
 import type { IResponseRS } from "~/types/responses";
 import { TASK_DATA } from "~/utils/constants";
+import { persist } from "zustand/middleware";
+import type { RefObject } from "react";
+
+export interface IRunescapePersistStore {
+  rsName: string;
+  setRsName: (name: string) => void;
+  clearStore: () => void;
+  permissionStorage: boolean;
+  setPermissionStorage: (permission: boolean) => void;
+}
+
+export const useRuneScapePersistStore = create<IRunescapePersistStore>()(
+  persist(
+    (set, get) => ({
+      rsName: "",
+      setRsName: (name: string) => set({ rsName: name }),
+      clearStore: () => set({ rsName: "" }),
+      permissionStorage: false,
+      setPermissionStorage: (permission: boolean) =>
+        set({ permissionStorage: permission }),
+    }),
+    { name: "runescape-storage" }
+  )
+);
 
 export interface RuneScapeState {
   rsName: string;
@@ -17,10 +45,20 @@ export interface RuneScapeState {
   setIncompleteByTier: (
     data: { name: string; value: number; color: string }[]
   ) => void;
+  refetch: (
+    options?: RefetchOptions
+  ) => Promise<QueryObserverResult<IResponseRS, Error>>;
+  setRefetch: (
+    refetch: (
+      options?: RefetchOptions
+    ) => Promise<QueryObserverResult<IResponseRS, Error>>
+  ) => void;
+  search: boolean;
+  setSearch: (search: boolean) => void;
 }
 
 export const useRuneScapeStore = create<RuneScapeState>()((set) => ({
-  rsName: "",
+  rsName: useRuneScapePersistStore.getState().rsName || "",
   setRsName: (name: string) => set({ rsName: name }),
   data: null,
   setData: (data: IResponseRS) => set({ data: data }),
@@ -30,4 +68,12 @@ export const useRuneScapeStore = create<RuneScapeState>()((set) => ({
   setCompletedByTier: (data) => set({ completedByTier: data }),
   incompleteByTier: TASK_DATA,
   setIncompleteByTier: (data) => set({ incompleteByTier: data }),
+  refetch: () => Promise.resolve({} as QueryObserverResult<IResponseRS, Error>),
+  setRefetch: (
+    refetch: (
+      options?: RefetchOptions
+    ) => Promise<QueryObserverResult<IResponseRS, Error>>
+  ) => set({ refetch: refetch }),
+  search: false,
+  setSearch: (search) => set({ search }),
 }));

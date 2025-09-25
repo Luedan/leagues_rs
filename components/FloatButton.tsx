@@ -2,6 +2,7 @@ import { ActionIcon, Button, type ActionIconProps } from "@mantine/core";
 
 interface FloatButtonProps extends ActionIconProps {
   children: React.ReactNode;
+  onClick?: () => void;
 }
 
 export function FloatButton({ children, ...props }: FloatButtonProps) {
