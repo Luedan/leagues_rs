@@ -12,6 +12,7 @@ An **unofficial fan website** dedicated to RuneScape 3 players participating in 
 - 📍 **Organization by regions and locations**
 - 📱 **Modern, responsive design**
 - 📊 **Graphs for completed and incomplete tasks**
+- 🧙‍♂️ **Runescape name save locally (localStorage) for quick access**
 
 ## 🛠️ Technologies Used
 

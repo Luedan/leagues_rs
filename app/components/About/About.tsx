@@ -39,6 +39,7 @@ export const AboutComponent = () => {
               <li>📍 Organization by regions and locations</li>
               <li>📱 Responsive and modern design</li>
               <li>📊 Graphs for completed and incomplete tasks</li>
+              <li>🧙‍♂️ Runescape name save locally (localStorage) for quick access</li>
             </ul>
           </div>
 
