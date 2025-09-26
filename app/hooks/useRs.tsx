@@ -119,10 +119,10 @@ export const useRs = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   setSearch(true);
-  //   setValue(rsName || "");
-  // }, [rsName]);
+  useEffect(() => {
+    setSearch(true);
+    setValue(rsName || "");
+  }, [rsName]);
 
   return {
     handleSearch,
