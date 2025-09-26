@@ -1,8 +1,8 @@
 import "@mantine/core/styles.css";
-import "@mantine/dates/styles.css"; 
-import "mantine-react-table/styles.css"; 
+import "@mantine/dates/styles.css";
+import "mantine-react-table/styles.css";
 import "@mantine/charts/styles.css";
-import '@mantine/notifications/styles.css';
+import "@mantine/notifications/styles.css";
 
 import {
   isRouteErrorResponse,
@@ -17,6 +17,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { Route } from "./+types/root";
 import "./app.css";
 import { createTheme, MantineProvider } from "@mantine/core";
+import { ModalsProvider } from "@mantine/modals";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -60,7 +61,9 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <MantineProvider theme={theme} defaultColorScheme="auto">
-        <Outlet />
+        <ModalsProvider>
+          <Outlet />
+        </ModalsProvider>
       </MantineProvider>
     </QueryClientProvider>
   );

@@ -1,6 +1,15 @@
-import { ActionIcon, Button, Modal, TextInput, Tooltip } from "@mantine/core";
+import {
+  ActionIcon,
+  Button,
+  Divider,
+  Modal,
+  Text,
+  TextInput,
+  Tooltip,
+} from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconUser } from "@tabler/icons-react";
+import { ConfirmDialog } from "components/ConfirmDialog";
 import { useRef } from "react";
 import {
   useRuneScapePersistStore,
@@ -9,10 +18,9 @@ import {
 
 export const ModalConfig = () => {
   const refInput = useRef<HTMLInputElement>(null);
-  const { clearStore, rsName, setRsName } = useRuneScapePersistStore(
-    (state) => state
-  );
-  const { setSearch } = useRuneScapeStore((state) => state);
+  const formRef = useRef<HTMLFormElement>(null);
+  const { clearStore, rsName, setRsName, clearTodoTasks } =
+    useRuneScapePersistStore((state) => state);
 
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -25,6 +33,10 @@ export const ModalConfig = () => {
     clearStore();
     setRsName(value);
     close();
+  };
+
+  const triggerFormSubmit = () => {
+    formRef.current?.requestSubmit();
   };
 
   return (
@@ -45,15 +57,35 @@ export const ModalConfig = () => {
         title="Profile App Settings"
         centered
       >
-        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-          <TextInput
-            defaultValue={rsName || ""}
-            label="Runescape Name"
-            description="Set your default Runescape Name for faster profile access"
-            ref={refInput}
-          />
-          <Button type="submit">Guardar</Button>
-        </form>
+        <div className="flex flex-col gap-4">
+          <form
+            className="flex flex-col gap-4"
+            onSubmit={handleSubmit}
+            ref={formRef}
+          >
+            <TextInput
+              defaultValue={rsName || ""}
+              label="Runescape Name"
+              description="Set your default Runescape Name for faster profile access"
+              ref={refInput}
+            />
+            <ConfirmDialog
+              onConfirm={triggerFormSubmit}
+              buttonText="Save Changes"
+              titleDialog="Are you sure you want to change your Runescape Name?"
+            >
+              <Text>
+                This action will delete your To-Do task and change your quick
+                access profile. Are you sure you want to proceed?
+              </Text>
+            </ConfirmDialog>
+          </form>
+
+          <Divider />
+          <Button variant="outline" onClick={clearTodoTasks}>
+            Clear To-Do Tasks
+          </Button>
+        </div>
       </Modal>
     </>
   );

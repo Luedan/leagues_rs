@@ -1,3 +1,5 @@
+import type { MRT_RowSelectionState } from "mantine-react-table";
+import type { Completed } from "~/types/responses";
 
 export const SkillMax = {
   Attack: 99,
@@ -35,7 +37,6 @@ export const SkillMax = {
   totalLevel: 3095,
 };
 
-
 export const trophies = {
   bronze: 2000,
   iron: 4000,
@@ -43,16 +44,30 @@ export const trophies = {
   mithril: 20000,
   adamant: 30000,
   rune: 45000,
-  dragon: 60000
+  dragon: 60000,
 };
 
 export const validateRange = (points: number) => {
-    if (points >= trophies.dragon) return "dragon";
-    if (points >= trophies.rune) return "rune";
-    if (points >= trophies.adamant) return "adamant";
-    if (points >= trophies.mithril) return "mithril";
-    if (points >= trophies.steel) return "steel";
-    if (points >= trophies.iron) return "iron";
-    if (points >= trophies.bronze) return "bronze";
-    return "none";
-}
+  if (points >= trophies.dragon) return "dragon";
+  if (points >= trophies.rune) return "rune";
+  if (points >= trophies.adamant) return "adamant";
+  if (points >= trophies.mithril) return "mithril";
+  if (points >= trophies.steel) return "steel";
+  if (points >= trophies.iron) return "iron";
+  if (points >= trophies.bronze) return "bronze";
+  return "none";
+};
+
+export const objectHasKey = <T extends object>(
+  obj: T,
+  key: PropertyKey
+): key is keyof T => {
+  return Object.keys(obj).includes(key as string);
+};
+
+export const getTaskInIncompleteTask = (
+  incompleted: Completed[],
+  taskObj: MRT_RowSelectionState
+) => {
+  return incompleted.filter((task) => objectHasKey(taskObj, task.taskId)) || [];
+};

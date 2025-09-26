@@ -7,6 +7,7 @@ import type { IResponseRS } from "~/types/responses";
 import { TASK_DATA } from "~/utils/constants";
 import { persist } from "zustand/middleware";
 import type { RefObject } from "react";
+import type { MRT_RowSelectionState } from "mantine-react-table";
 
 export interface IRunescapePersistStore {
   rsName: string;
@@ -14,6 +15,9 @@ export interface IRunescapePersistStore {
   clearStore: () => void;
   permissionStorage: boolean;
   setPermissionStorage: (permission: boolean) => void;
+  todoTasks: MRT_RowSelectionState;
+  setTodoTasks: (tasks: MRT_RowSelectionState) => void;
+  clearTodoTasks: () => void;
 }
 
 export const useRuneScapePersistStore = create<IRunescapePersistStore>()(
@@ -21,10 +25,13 @@ export const useRuneScapePersistStore = create<IRunescapePersistStore>()(
     (set, get) => ({
       rsName: "",
       setRsName: (name: string) => set({ rsName: name }),
-      clearStore: () => set({ rsName: "" }),
+      clearStore: () => set({ rsName: "", todoTasks: {} }),
       permissionStorage: false,
       setPermissionStorage: (permission: boolean) =>
         set({ permissionStorage: permission }),
+      todoTasks: {},
+      setTodoTasks: (tasks: MRT_RowSelectionState) => set({ todoTasks: tasks }),
+      clearTodoTasks: () => set({ todoTasks: {} }),
     }),
     { name: "runescape-storage" }
   )

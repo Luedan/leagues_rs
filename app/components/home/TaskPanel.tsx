@@ -1,4 +1,4 @@
-import { Divider, Image, Paper, Tabs, Title } from "@mantine/core";
+import { Button, Divider, Image, Paper, Tabs, Title } from "@mantine/core";
 import {
   MantineReactTable,
   useMantineReactTable,
@@ -7,13 +7,24 @@ import {
   type MRT_RowSelectionState,
 } from "mantine-react-table";
 import { useMemo, useState } from "react";
-import { useRuneScapeStore } from "~/store/RunescapeStore";
+import {
+  useRuneScapePersistStore,
+  useRuneScapeStore,
+} from "~/store/RunescapeStore";
 import type { Completed } from "~/types/responses";
+import { getTaskInIncompleteTask, objectHasKey } from "~/utils";
 
 export const TaskPanel = () => {
   const { data, isLoading } = useRuneScapeStore((state) => state);
+  const { setTodoTasks, todoTasks } = useRuneScapePersistStore(
+    (state) => state
+  );
 
   const [rowSelection, setRowSelection] = useState<MRT_RowSelectionState>({});
+
+  const todoTasksData = useMemo(() => {
+    return getTaskInIncompleteTask(data?.incompleted || [], todoTasks);
+  }, [data?.incompleted, todoTasks]);
 
   const columns = useMemo<MRT_ColumnDef<Completed>[]>(
     () => [
@@ -44,6 +55,13 @@ export const TaskPanel = () => {
     []
   );
 
+  const hasSelection = Object.keys(rowSelection).length > 0;
+
+  const handleTodoTask = () => {
+    setTodoTasks({ ...todoTasks, ...rowSelection });
+    setRowSelection({});
+  };
+
   const incompleteTable = useMantineReactTable({
     columns,
     data: data?.incompleted || [],
@@ -69,14 +87,39 @@ export const TaskPanel = () => {
     mantineTableContainerProps: { mah: "50dvh" },
   });
 
+  const todoTable = useMantineReactTable({
+    columns,
+    data: todoTasksData || [],
+    state: {
+      isLoading,
+    },
+    initialState: { density: "md" },
+    mantineTableContainerProps: { mah: "50dvh" },
+    enableStickyHeader: true,
+  });
+
   return (
     <Paper shadow="sm" w={"100%"} p="md" withBorder>
-      <Title order={3}>Task Lists</Title>
+      <div className="flex items-center justify-between">
+        <Title order={3}>Task Lists</Title>
+        {hasSelection && (
+          <Button
+            disabled={!hasSelection}
+            variant="outline"
+            onClick={handleTodoTask}
+          >
+            {hasSelection ? "Save To-Do Tasks" : "No Tasks Selected"}
+          </Button>
+        )}
+      </div>
       <Divider my="md" />
       <Tabs defaultValue="incompleted">
         <Tabs.List>
           <Tabs.Tab value="incompleted">Incomplete</Tabs.Tab>
           <Tabs.Tab value="completed">Completed</Tabs.Tab>
+          {todoTasksData?.length ? (
+            <Tabs.Tab value="todo">To-Do ({todoTasksData?.length})</Tabs.Tab>
+          ) : null}
         </Tabs.List>
 
         <Tabs.Panel value="incompleted" pt="xs">
@@ -86,6 +129,12 @@ export const TaskPanel = () => {
         <Tabs.Panel value="completed" pt="xs">
           <MantineReactTable table={completedTable} />
         </Tabs.Panel>
+
+        {todoTasksData?.length ? (
+          <Tabs.Panel value="todo" pt="xs">
+            <MantineReactTable table={todoTable} />
+          </Tabs.Panel>
+        ) : null}
       </Tabs>
     </Paper>
   );
