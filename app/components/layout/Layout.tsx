@@ -10,12 +10,13 @@ import { Notifications } from "@mantine/notifications";
 import { IconMoonFilled, IconSearch, IconSunFilled } from "@tabler/icons-react";
 import { NavLink, Outlet, useLocation, useNavigation } from "react-router";
 import { useRs } from "~/hooks/useRs";
-import { ModalConfig } from "../modalConfig/ModalConfig";
+import { ModalConfig } from "../buttonActions/ModalConfig";
 import { Loading } from "./Loading";
+import { FloatButtonGroup } from "components/FloatButton";
+import { ReloadButton } from "../buttonActions/ReloadButton";
 
 export default function Layout() {
   const { handleSearch, isLoading, value, handleChange } = useRs();
-
 
   const navigation = useNavigation();
   const isNavigating = Boolean(navigation.location);
@@ -105,7 +106,9 @@ export default function Layout() {
         <div className="flex w-full flex-col items-center gap-4 p-4 container">
           <Outlet />
         </div>
-        <ModalConfig />
+        <FloatButtonGroup>
+          {[<ReloadButton />, <ModalConfig />]}
+        </FloatButtonGroup>
       </AppShell.Main>
     </AppShell>
   );

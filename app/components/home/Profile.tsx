@@ -12,9 +12,10 @@ import {
 import { IconReload } from "@tabler/icons-react";
 import { useRuneScapeStore } from "~/store/RunescapeStore";
 import { SkillMax, validateRange } from "~/utils";
+import { ReloadButton } from "../buttonActions/ReloadButton";
 
 export const Profile = () => {
-  const { data, refetch } = useRuneScapeStore((state) => state);
+  const { data } = useRuneScapeStore((state) => state);
 
   const skillData = data?.levels || {};
   const skills = Object.keys(skillData || {}) || [];
@@ -38,18 +39,7 @@ export const Profile = () => {
       <Paper shadow="sm" w={"100%"} p="md" withBorder>
         <div className="flex items-center justify-between">
           <Title order={3}>Profile</Title>
-          {data?.username && !!refetch ? (
-            <Tooltip
-              label="Reload data"
-              openDelay={500}
-              closeDelay={100}
-              transitionProps={{ transition: "rotate-left", duration: 300 }}
-            >
-              <ActionIcon variant="light" onClick={() => refetch()}>
-                <IconReload stroke={2} />
-              </ActionIcon>
-            </Tooltip>
-          ) : null}
+          <ReloadButton />
         </div>
         <Divider my="md" />
         <Grid>

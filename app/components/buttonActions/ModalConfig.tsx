@@ -1,8 +1,7 @@
-import { Button, Modal, TextInput, Tooltip } from "@mantine/core";
+import { ActionIcon, Button, Modal, TextInput, Tooltip } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconUser } from "@tabler/icons-react";
-import { FloatButton } from "components/FloatButton";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import {
   useRuneScapePersistStore,
   useRuneScapeStore,
@@ -36,9 +35,9 @@ export const ModalConfig = () => {
         closeDelay={100}
         transitionProps={{ transition: "rotate-left", duration: 300 }}
       >
-        <FloatButton variant="light" size={"xl"} onClick={open}>
+        <ActionIcon variant="light" size={"xl"} onClick={open}>
           <IconUser stroke={2} className="animate-pulse" />
-        </FloatButton>
+        </ActionIcon>
       </Tooltip>
       <Modal
         opened={opened}

@@ -12,3 +12,21 @@ export function FloatButton({ children, ...props }: FloatButtonProps) {
     </div>
   );
 }
+
+export function FloatButtonGroup({
+  children,
+  spacing = "mb-3",
+}: {
+  children: React.ReactNode[];
+  spacing?: string;
+}) {
+  return (
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+      {children.map((child, idx) => (
+        <div key={idx} className={idx < children.length - 1 ? spacing : ""}>
+          {child}
+        </div>
+      ))}
+    </div>
+  );
+}

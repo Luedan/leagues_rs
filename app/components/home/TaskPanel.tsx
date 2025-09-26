@@ -4,13 +4,16 @@ import {
   useMantineReactTable,
   type MRT_Cell,
   type MRT_ColumnDef,
+  type MRT_RowSelectionState,
 } from "mantine-react-table";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useRuneScapeStore } from "~/store/RunescapeStore";
 import type { Completed } from "~/types/responses";
 
 export const TaskPanel = () => {
   const { data, isLoading } = useRuneScapeStore((state) => state);
+
+  const [rowSelection, setRowSelection] = useState<MRT_RowSelectionState>({});
 
   const columns = useMemo<MRT_ColumnDef<Completed>[]>(
     () => [
@@ -46,10 +49,14 @@ export const TaskPanel = () => {
     data: data?.incompleted || [],
     state: {
       isLoading,
+      rowSelection,
     },
+    onRowSelectionChange: setRowSelection,
     initialState: { density: "md" },
     mantineTableContainerProps: { mah: "50dvh" },
     enableStickyHeader: true,
+    enableRowSelection: true,
+    getRowId: (originalRow) => originalRow.taskId,
   });
 
   const completedTable = useMantineReactTable({
@@ -60,7 +67,6 @@ export const TaskPanel = () => {
     },
     initialState: { density: "md" },
     mantineTableContainerProps: { mah: "50dvh" },
-    enableStickyHeader: true,
   });
 
   return (
