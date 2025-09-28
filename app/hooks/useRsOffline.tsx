@@ -51,7 +51,6 @@ export const useRsOffline = () => {
 
     if (data?.username && !data?.error && !isLoading) {
       const { completed, incomplete } = separateTask(data?.league_tasks || []);
-      console.log(completed)
       const completedByTier = completed
         ?.reduce(
           (acc, task) => {

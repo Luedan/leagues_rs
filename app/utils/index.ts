@@ -74,12 +74,10 @@ export const getTaskInIncompleteTask = (
 };
 
 export const separateTask = (tasks: Array<Number>) => {
-  console.log(tasks)
   const completed: Completed[] = taskData.filter((task) =>
     tasks.includes(+task.taskId)
   );
 
-  console.log(taskData)
   const incomplete: Completed[] = taskData.filter(
     (task) => !tasks.includes(+task.taskId)
   );
