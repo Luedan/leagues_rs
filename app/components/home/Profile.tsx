@@ -102,21 +102,20 @@ export const Profile = () => {
             </Grid.Col>
           ))}
         </Grid>
-        <Box className="flex justify-end mt-3">
-          <Box
-            className="flex gap-2 rounded border-1 border-slate-400 flex-col p-1 shadow-sm"
-            w={"10%"}
-          >
-            <Image
-              className="self-start"
-              src={"https://runescape.wiki/images/Skills_icon.png?51831"}
-              w={26}
-            />
-            <Text className="self-end" size="xs" fw={700}>
-              {totalLvl} / {realTotal}
-            </Text>
-          </Box>
-        </Box>
+        <Grid justify="flex-end" align="center">
+          <Grid.Col span={{ base: 4, md:2, sm:3, lg: 1, xs: 4 }}>
+            <Box className="flex gap-2 rounded border-1 border-slate-400 flex-col p-1 shadow-sm">
+              <Image
+                className="self-start"
+                src={"https://runescape.wiki/images/Skills_icon.png?51831"}
+                w={26}
+              />
+              <Text className="self-end" size="xs" fw={700}>
+                {totalLvl} / {realTotal}
+              </Text>
+            </Box>
+          </Grid.Col>
+        </Grid>
       </Paper>
     </Box>
   );

@@ -12,7 +12,8 @@ import {
   useRuneScapeStore,
 } from "~/store/RunescapeStore";
 import type { Completed } from "~/types/responses";
-import { getTaskInIncompleteTask, objectHasKey } from "~/utils";
+import { getTaskInIncompleteTask } from "~/utils";
+import { LOCATIONS, POINTS, TIERS } from "~/utils/constants";
 
 export const TaskPanel = () => {
   const { data, isLoading } = useRuneScapeStore((state) => state);
@@ -28,15 +29,37 @@ export const TaskPanel = () => {
 
   const columns = useMemo<MRT_ColumnDef<Completed>[]>(
     () => [
-      { accessorKey: "taskId", header: "Task ID" },
-      { accessorKey: "locality", header: "Locality" },
-      { accessorKey: "task", header: "Task" },
-      { accessorKey: "information", header: "Information" },
-      { accessorKey: "requirements", header: "Requirements" },
-      { accessorKey: "points", header: "Points" },
+      { accessorKey: "taskId", header: "Task ID", filterFn: "includesString" },
+      {
+        accessorKey: "locality",
+        header: "Locality",
+        filterVariant: "multi-select",
+        mantineFilterMultiSelectProps: { data: LOCATIONS },
+      },
+      { accessorKey: "task", header: "Task", filterFn: "includesString" },
+      {
+        accessorKey: "information",
+        header: "Information",
+        filterFn: "includesString",
+      },
+      {
+        accessorKey: "requirements",
+        header: "Requirements",
+        filterFn: "includesString",
+      },
+      {
+        accessorKey: "points",
+        header: "Points",
+        filterVariant: "multi-select",
+        mantineFilterMultiSelectProps: { data: POINTS },
+      },
       {
         accessorKey: "taskTier",
         header: "Tier",
+        filterVariant: "multi-select",
+        mantineFilterMultiSelectProps: {
+          data: TIERS,
+        },
         Cell: ({ cell }: { cell: MRT_Cell<Completed> }) => {
           const tier = cell.getValue<string>();
           return (
@@ -75,6 +98,7 @@ export const TaskPanel = () => {
     enableStickyHeader: true,
     enableRowSelection: true,
     getRowId: (originalRow) => originalRow.taskId,
+    columnFilterDisplayMode: "popover",
   });
 
   const completedTable = useMantineReactTable({
