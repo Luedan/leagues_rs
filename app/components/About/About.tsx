@@ -30,6 +30,15 @@ export const AboutComponent = () => {
 
           <div>
             <Title order={3} mb="md">
+              🌐 Data & API Usage
+            </Title>
+            <Text size="md" className="leading-relaxed">
+              This website <strong>only consumes the official RuneScape API</strong> to fetch player statistics. All other data, such as tasks, regions, and requirements, is stored locally within the project and <strong>no other external APIs are used</strong>.
+            </Text>
+          </div>
+
+          <div>
+            <Title order={3} mb="md">
               ⚡ Features
             </Title>
             <ul className="space-y-2">
