@@ -2,12 +2,14 @@ import type {
   QueryObserverResult,
   RefetchOptions,
 } from "@tanstack/react-query";
-import { create } from "zustand";
-import type { IResponseRS } from "~/types/responses";
-import { TASK_DATA } from "~/utils/constants";
-import { persist } from "zustand/middleware";
-import type { RefObject } from "react";
 import type { MRT_RowSelectionState } from "mantine-react-table";
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import type {
+  IDataLeague,
+  IResponseLeague
+} from "~/types/responses";
+import { TASK_DATA } from "~/utils/constants";
 
 export interface IRunescapePersistStore {
   rsName: string;
@@ -40,8 +42,8 @@ export const useRuneScapePersistStore = create<IRunescapePersistStore>()(
 export interface RuneScapeState {
   rsName: string;
   setRsName: (name: string) => void;
-  data: IResponseRS | null;
-  setData: (data: IResponseRS) => void;
+  data: IDataLeague | IDataLeague | null;
+  setData: (data: IDataLeague | IDataLeague) => void;
   isLoading: boolean;
   setIsLoading: (loading: boolean) => void;
   completedByTier: { name: string; value: number; color: string }[];
@@ -54,11 +56,11 @@ export interface RuneScapeState {
   ) => void;
   refetch: (
     options?: RefetchOptions
-  ) => Promise<QueryObserverResult<IResponseRS, Error>>;
+  ) => Promise<QueryObserverResult<IResponseLeague, Error>>;
   setRefetch: (
     refetch: (
       options?: RefetchOptions
-    ) => Promise<QueryObserverResult<IResponseRS, Error>>
+    ) => Promise<QueryObserverResult<IResponseLeague, Error>>
   ) => void;
   search: boolean;
   setSearch: (search: boolean) => void;
@@ -68,19 +70,20 @@ export const useRuneScapeStore = create<RuneScapeState>()((set) => ({
   rsName: useRuneScapePersistStore.getState().rsName || "",
   setRsName: (name: string) => set({ rsName: name }),
   data: null,
-  setData: (data: IResponseRS) => set({ data: data }),
+  setData: (data: IDataLeague) => set({ data: data }),
   isLoading: false,
   setIsLoading: (loading: boolean) => set({ isLoading: loading }),
   completedByTier: TASK_DATA,
   setCompletedByTier: (data) => set({ completedByTier: data }),
   incompleteByTier: TASK_DATA,
   setIncompleteByTier: (data) => set({ incompleteByTier: data }),
-  refetch: () => Promise.resolve({} as QueryObserverResult<IResponseRS, Error>),
+  refetch: () =>
+    Promise.resolve({} as QueryObserverResult<IResponseLeague, Error>),
   setRefetch: (
     refetch: (
       options?: RefetchOptions
-    ) => Promise<QueryObserverResult<IResponseRS, Error>>
-  ) => set({ refetch: refetch }),
+    ) => Promise<QueryObserverResult<IResponseLeague, Error>>
+  ) => set({ refetch }),
   search: false,
   setSearch: (search) => set({ search }),
 }));

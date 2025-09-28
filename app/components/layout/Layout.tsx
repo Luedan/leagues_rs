@@ -9,14 +9,14 @@ import {
 import { Notifications } from "@mantine/notifications";
 import { IconMoonFilled, IconSearch, IconSunFilled } from "@tabler/icons-react";
 import { NavLink, Outlet, useLocation, useNavigation } from "react-router";
-import { useRs } from "~/hooks/useRs";
+import { useRsOffline } from "~/hooks/useRsOffline";
 import { ModalConfig } from "../buttonActions/ModalConfig";
 import { Loading } from "./Loading";
 import { FloatButtonGroup } from "components/FloatButton";
 import { ReloadButton } from "../buttonActions/ReloadButton";
 
 export default function Layout() {
-  const { handleSearch, isLoading, value, handleChange } = useRs();
+  const { handleSearch, isLoading, value, handleChange } = useRsOffline();
 
   const navigation = useNavigation();
   const isNavigating = Boolean(navigation.location);

@@ -2,13 +2,14 @@ import { notifications } from "@mantine/notifications";
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { getPlayers } from "~/services/rs";
+import { getPlayers, getPlayersLeague } from "~/services/rs";
 import {
   useRuneScapePersistStore,
   useRuneScapeStore,
 } from "~/store/RunescapeStore";
+import { separateTask } from "~/utils";
 
-export const useRs = () => {
+export const useRsOffline = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const {
@@ -39,7 +40,7 @@ export const useRs = () => {
   };
 
   const { data, isLoading, refetch, isRefetching } = useQuery({
-    queryFn: () => getPlayers(value),
+    queryFn: () => getPlayersLeague(value),
     queryKey: ["Player_League", value],
     enabled: !!search && value.trim().length > 0,
     refetchOnWindowFocus: false,
@@ -48,8 +49,10 @@ export const useRs = () => {
   useEffect(() => {
     setIsLoading(isLoading);
 
-    if (data && !data?.error && !isLoading) {
-      const completedByTier = data?.completed
+    if (data?.username && !data?.error && !isLoading) {
+      const { completed, incomplete } = separateTask(data?.league_tasks || []);
+      console.log(completed)
+      const completedByTier = completed
         ?.reduce(
           (acc, task) => {
             const tier = task.taskTier || "none";
@@ -69,7 +72,7 @@ export const useRs = () => {
         )
         .filter((tier) => tier.value > 0);
 
-      const incompleteByTier = data?.incompleted
+      const incompleteByTier = incomplete
         ?.reduce(
           (acc, task) => {
             const tier = task.taskTier || "none";
@@ -92,7 +95,7 @@ export const useRs = () => {
       setIncompleteByTier(incompleteByTier);
       setCompletedByTier(completedByTier);
 
-      setData(data);
+      setData({ ...data, completed, incomplete: incomplete });
       setRefetch(refetch);
 
       notifications.show({
@@ -104,7 +107,7 @@ export const useRs = () => {
     if (data?.error && !isLoading) {
       notifications.show({
         autoClose: 4000,
-        message: data?.message || "An error has occurred, please try again.",
+        message: data?.error || "An error has occurred, please try again.",
       });
     }
     setSearch(false);

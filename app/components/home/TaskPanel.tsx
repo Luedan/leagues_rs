@@ -23,8 +23,8 @@ export const TaskPanel = () => {
   const [rowSelection, setRowSelection] = useState<MRT_RowSelectionState>({});
 
   const todoTasksData = useMemo(() => {
-    return getTaskInIncompleteTask(data?.incompleted || [], todoTasks);
-  }, [data?.incompleted, todoTasks]);
+    return getTaskInIncompleteTask(data?.incomplete || [], todoTasks);
+  }, [data?.incomplete, todoTasks]);
 
   const columns = useMemo<MRT_ColumnDef<Completed>[]>(
     () => [
@@ -64,7 +64,7 @@ export const TaskPanel = () => {
 
   const incompleteTable = useMantineReactTable({
     columns,
-    data: data?.incompleted || [],
+    data: data?.incomplete || [],
     state: {
       isLoading,
       rowSelection,

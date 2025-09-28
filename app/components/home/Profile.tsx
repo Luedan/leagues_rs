@@ -24,7 +24,7 @@ export const Profile = () => {
   const completationPercentage = data
     ? (
         (data?.completed?.length /
-          (data?.completed?.length + data?.incompleted?.length)) *
+          (data?.completed?.length + data?.incomplete?.length)) *
         100
       ).toFixed(2)
     : "0.00";
@@ -53,7 +53,7 @@ export const Profile = () => {
           </Grid.Col>
           <Grid.Col span={{ base: 12, md: 6, sm: 6, lg: 4, xs: 6 }}>
             <Text fw={"bolder"}>
-              Incomplete Tasks: {data?.incompleted?.length || 0}
+              Incomplete Tasks: {data?.incomplete?.length || 0}
             </Text>
           </Grid.Col>
           <Grid.Col span={{ base: 12, md: 6, sm: 6, lg: 4, xs: 6 }}>

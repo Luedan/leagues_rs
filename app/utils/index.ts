@@ -1,5 +1,6 @@
 import type { MRT_RowSelectionState } from "mantine-react-table";
 import type { Completed } from "~/types/responses";
+import { taskData } from "./taskData";
 
 export const SkillMax = {
   Attack: 99,
@@ -70,4 +71,17 @@ export const getTaskInIncompleteTask = (
   taskObj: MRT_RowSelectionState
 ) => {
   return incompleted.filter((task) => objectHasKey(taskObj, task.taskId)) || [];
+};
+
+export const separateTask = (tasks: Array<Number>) => {
+  console.log(tasks)
+  const completed: Completed[] = taskData.filter((task) =>
+    tasks.includes(+task.taskId)
+  );
+
+  console.log(taskData)
+  const incomplete: Completed[] = taskData.filter(
+    (task) => !tasks.includes(+task.taskId)
+  );
+  return { completed, incomplete };
 };

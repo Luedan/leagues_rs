@@ -3,10 +3,6 @@ RUN npm install -g pnpm
 WORKDIR /app
 COPY . .
 RUN pnpm install --frozen-lockfile
-ARG VITE_API_USERNAME
-ARG VITE_API_PASSWORD
-ENV VITE_API_USERNAME=$VITE_API_USERNAME
-ENV VITE_API_PASSWORD=$VITE_API_PASSWORD
 
 RUN pnpm run build
 

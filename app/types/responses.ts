@@ -8,9 +8,27 @@ export interface IResponseRS {
   message?: string | null;
 }
 
+export interface IResponseLeague {
+  username: string;
+  timestamp: Date;
+  league_tasks: Array<Number>,
+  levels: { [key: string]: number };
+  code?: string | null;
+  error?: string | null;
+}
+
+export interface IDataLeague {
+  username: string;
+  timestamp: Date;
+  levels: { [key: string]: number };
+  incomplete: Completed[];
+  completed: Completed[];
+  league_tasks: Array<Number>;
+}
+
 export interface Completed {
   taskId: string;
-  locality: Locality;
+  locality: string;
   task: string;
   information: null | string;
   requirements: string;
